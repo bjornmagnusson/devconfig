@@ -1,0 +1,12 @@
+required:
+  gh
+  kubectl
+  wget
+  git
+  mvn
+  docker
+recommended:
+  flux
+  kail
+  gofish
+  skaffold
