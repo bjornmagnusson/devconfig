@@ -8,5 +8,4 @@ required:
 recommended:
   flux
   kail
-  gofish
   skaffold

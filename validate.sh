@@ -2,17 +2,17 @@
 
 readonly package="validate.sh"
 if [ ! $(command -v "yq") ]; then
-    echo "Required software $software is missing"
+    echo "Required software yq is missing"
     exit 1
 fi
-SOFTWARE_FILE="softwares.yaml"
-SOFTWARE_YAML=$(yq read "$SOFTWARE_FILE")
+readonly SOFTWARE_FILE="softwares.yaml"
+SOFTWARE_YAML=$(yq "$SOFTWARE_FILE")
 if [[ $? != 0 ]]; then
   echo "Failed to find $SOFTWARE_FILE"
   exit 1
 fi
-readonly required_software=$(yq r $SOFTWARE_FILE 'required')
-readonly recommended_software=$(yq r $SOFTWARE_FILE 'recommended')
+readonly required_software=$(cat $SOFTWARE_FILE | yq '.required')
+readonly recommended_software=$(cat $SOFTWARE_FILE | yq '.recommended')
 
 echo "===== Required software ====="
 for software in $required_software; do

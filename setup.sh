@@ -49,8 +49,15 @@ while test $# -gt 0; do
   esac
 done
 
-cp .bash-git-prompt ~/
+cp -r .bash-git-prompt ~/
 cp .bashrc ~/
 cp .gitconfig ~/
-sed -i "s/<name>/$GIT_NAME" ~/.gitconfig
-sed -i "s/<email>/$GIT_EMAIL" ~/.gitconfig
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sed -i '.bak' "s/<name>/$GIT_NAME/" ~/.gitconfig
+  sed -i '.bak' "s/<email>/$GIT_EMAIL/" ~/.gitconfig
+else
+  sed -i "s/<name>/$GIT_NAME/" ~/.gitconfig
+  sed -i "s/<email>/$GIT_EMAIL/" ~/.gitconfig
+fi
+git config "user.name"
+git config "user.email"
