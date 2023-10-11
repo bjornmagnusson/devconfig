@@ -51,7 +51,9 @@ done
 
 cp -r .bash-git-prompt ~/
 cp .bashrc ~/
+dos2unix ~/.bashrc
 cp .gitconfig ~/
+dos2unix ~/.gitconfig
 if [[ "$OSTYPE" == "darwin"* ]]; then
   sed -i '.bak' "s/<name>/$GIT_NAME/" ~/.gitconfig
   sed -i '.bak' "s/<email>/$GIT_EMAIL/" ~/.gitconfig
