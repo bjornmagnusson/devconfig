@@ -116,6 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
+
 # enable bash completion for GitOps Toolkit
 . <(flux completion bash)
 
