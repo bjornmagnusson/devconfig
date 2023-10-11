@@ -49,9 +49,9 @@ while test $# -gt 0; do
   esac
 done
 
-cp -r .bash-git-prompt ~/
-cp .bashrc ~/
-dos2unix ~/.bashrc
+echo "============================="
+echo "======== GITCONFIG =========="
+echo "============================="
 cp .gitconfig ~/
 dos2unix ~/.gitconfig
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -63,3 +63,18 @@ else
 fi
 git config "user.name"
 git config "user.email"
+
+echo "============================"
+echo "===== KUBECTL ALIASES ======"
+echo "============================"
+cp .kubectl_aliases ~/
+dos2unix ~/.kubectl_aliases
+echo "Added $(cat ~/.kubectl_aliases | wc -l)"
+
+echo "============================"
+echo "======== BASHRC ============"
+echo "============================"
+cp -r .bash-git-prompt ~/
+cp .bashrc ~/
+dos2unix ~/.bashrc
+source ~/.bashrc

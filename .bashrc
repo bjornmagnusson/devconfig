@@ -121,6 +121,8 @@ if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     source $HOME/.bash-git-prompt/gitprompt.sh
 fi
 
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+
 # enable bash completion for GitOps Toolkit
 . <(flux completion bash)
 
