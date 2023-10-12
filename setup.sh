@@ -5,6 +5,7 @@ readonly package="setup.sh"
 SSH_USER=$USER
 GIT_NAME=""
 GIT_EMAIL=""
+GIT_HOME=""
 function showHelp() {
     echo "$package - Setup local development environment"
     echo " "
@@ -14,6 +15,7 @@ function showHelp() {
     echo "-h, --help  show brief help"
     echo "--git-name  specify which name is used for git commits (default: $GIT_NAME)"
     echo "--git-email  specify which email is used for git commits (default: $GIT_EMAIL)"
+    echo "--git-email  specify which directory to use in githome alias (default: $GIT_HOME)"
 }
 
 while test $# -gt 0; do
@@ -38,6 +40,16 @@ while test $# -gt 0; do
         GIT_EMAIL=$1
       else
         echo "no git-email parameter specified"
+        exit 1
+      fi
+      shift
+      ;;
+    --git-home)
+      shift
+      if test $# -gt 0; then
+        GIT_HOME=$1
+      else
+        echo "no git-home parameter specified"
         exit 1
       fi
       shift
@@ -76,5 +88,6 @@ echo "======== BASHRC ============"
 echo "============================"
 cp -r .bash-git-prompt ~/
 cp .bashrc ~/
+sed -i "s/<githome>/$(echo $GIT_HOME | sed 's/\//\\\//g')/" ~/.bashrc
 dos2unix ~/.bashrc
 source ~/.bashrc
