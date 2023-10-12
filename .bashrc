@@ -122,6 +122,7 @@ if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
 fi
 
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # enable bash completion for GitOps Toolkit
 . <(flux completion bash)
